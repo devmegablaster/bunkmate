@@ -20,7 +20,12 @@ function BunkMatesPage({ session, data }) {
     /([+-]?(?=\.\d|\d)(?:\d+)?(?:\.?\d*))(?:[eE]([+-]?\d+))?[a-zA-Z]+[0-9][0-9][0-9][0-9]/
   return (
     <div>
-      <Modal opened={open} onClose={() => setOpen(false)} title={'More Info'}>
+      <Modal
+        opened={open}
+        radius={10}
+        onClose={() => setOpen(false)}
+        title={'More Info'}
+      >
         <div className="flex justify-center space-x-4">
           <Image
             radius={200}
@@ -82,8 +87,8 @@ function BunkMatesPage({ session, data }) {
       <div className="grid grid-cols-4 gap-4 px-28 pt-5">
         {data.bunkMates.map((bunkMate) => {
           return (
-            <div style={{ width: 250, margin: 'auto' }}>
-              <Card shadow="sm" p="md" className="h-80">
+            <div style={{ width: 270, margin: 'auto' }}>
+              <Card shadow="sm" radius={10} p="md" className="h-80">
                 <Card.Section>
                   <Image
                     src={`https://avatars.dicebear.com/api/adventurer-neutral/${bunkMate.reg}.svg`}
@@ -93,7 +98,9 @@ function BunkMatesPage({ session, data }) {
                 </Card.Section>
 
                 <Group position="apart" className="mt-2">
-                  <Text weight={500}>{bunkMate.name}</Text>
+                  <Text weight={500}>
+                    {bunkMate.name.split(' ')[0]} {bunkMate.name.split(' ')[1]}
+                  </Text>
                   <Badge color="blue" variant="light">
                     {bunkMate.reg}
                   </Badge>
