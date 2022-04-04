@@ -2,7 +2,7 @@ import React from 'react'
 import db from '../firebase'
 import firebase from 'firebase'
 
-function enterDetails(block, room, name, reg) {
+function enterDetails(block, room, name, reg, phone, insta, para) {
   db.collection('Blocks')
     .doc(block)
     .collection('Rooms')
@@ -18,6 +18,9 @@ function enterDetails(block, room, name, reg) {
             bunkMates: firebase.firestore.FieldValue.arrayUnion({
               name,
               reg,
+              phone,
+              insta,
+              para,
             }),
           })
           .then(() => {
@@ -35,6 +38,9 @@ function enterDetails(block, room, name, reg) {
             bunkMates: firebase.firestore.FieldValue.arrayUnion({
               name,
               reg,
+              phone,
+              insta,
+              para,
             }),
           })
           .then(() => {
