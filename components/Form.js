@@ -3,7 +3,7 @@ import { Select, Input, Button, Textarea, Notification } from '@mantine/core'
 import { Check, X } from 'tabler-icons-react'
 import enterDetails from './enterDetails'
 
-function Form({ name, reg, setRefresh }) {
+function Form({ name, reg, setRefresh, mail }) {
   const [block, setBlock] = useState('')
   const [room, setRoom] = useState('')
   const [phone, setPhone] = useState('')
@@ -113,7 +113,7 @@ function Form({ name, reg, setRefresh }) {
           size="md"
           onClick={() => {
             if (block && name && room && block && bio) {
-              enterDetails(block, room, name, reg, phone, insta, bio)
+              enterDetails(block, room, name, reg, phone, insta, bio, mail)
               setRefresh(true)
             } else {
               setError(true)

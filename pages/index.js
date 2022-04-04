@@ -16,7 +16,6 @@ const Home = () => {
   const regex =
     /([+-]?(?=\.\d|\d)(?:\d+)?(?:\.?\d*))(?:[eE]([+-]?\d+))?[a-zA-Z]+[0-9][0-9][0-9][0-9]/
   const { data: session, status } = useSession()
-
   useEffect(() => {
     if (status === 'authenticated') {
       fetchUser(session?.user?.name?.match(regex)[0], setData)

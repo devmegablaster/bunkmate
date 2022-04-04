@@ -56,6 +56,10 @@ function BunkMatesPage({ session, data }) {
           <p className="text-center font-light">
             {more.para !== '' ? more.para : '-'}
           </p>
+          <h1 className="mt-3 font-bold">Email Address</h1>
+          <p className="text-center font-light">
+            {more.mail !== '' ? more.mail : '-'}
+          </p>
           <h1 className="mt-3 font-bold">Phone Number</h1>
           <p>{more.phone !== '' ? more.phone : '-'}</p>
           {console.log(more)}

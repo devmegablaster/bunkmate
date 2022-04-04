@@ -22,6 +22,7 @@ function DetailsPage({ session, setRefresh }) {
           name={session?.user.name.replace(regex, '')}
           reg={session?.user.name.match(regex)[0]}
           setRefresh={setRefresh}
+          mail={session?.user.email}
         />
       </div>
       <div className="fixed bottom-0 right-10 flex h-[500px] justify-end px-10">
