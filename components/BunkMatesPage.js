@@ -53,15 +53,24 @@ function BunkMatesPage({ session, data }) {
         </div>
         <div className="mt-4 flex flex-col items-center justify-center">
           <h1 className="font-bold">About</h1>
-          <p className="text-center font-light">{more.para ?? '-'}</p>
+          <p className="text-center font-light">
+            {more.para !== '' ? more.para : '-'}
+          </p>
           <h1 className="mt-3 font-bold">Phone Number</h1>
-          <p>{more.phone ?? '-'}</p>
+          <p>{more.phone !== '' ? more.phone : '-'}</p>
+          {console.log(more)}
           <h1 className="mt-3 font-bold">Instagram ID</h1>
           <p
             className="cursor-pointer text-blue-500 hover:underline"
-            onClick={() => Router.push(`https://instagram.com/${more.insta}`)}
+            onClick={() =>
+              Router.push(
+                `https://instagram.com/${
+                  more.insta !== '' ? more.insta : 'rick'
+                }`
+              )
+            }
           >
-            {more.insta ?? '-'}
+            {more.insta !== '' ? more.insta : '-'}
           </p>
         </div>
       </Modal>
@@ -90,7 +99,7 @@ function BunkMatesPage({ session, data }) {
         {data.bunkMates.map((bunkMate) => {
           return (
             <div style={{ width: 270, margin: 'auto' }}>
-              <Card shadow="sm" radius={10} p="md" className="h-80">
+              <Card shadow="md" radius={10} p="md" className="h-80">
                 <Card.Section>
                   <Image
                     src={`https://avatars.dicebear.com/api/adventurer-neutral/${bunkMate.reg}.svg`}
