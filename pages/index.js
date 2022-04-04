@@ -8,6 +8,7 @@ import firebase from 'firebase'
 import { useEffect, useState } from 'react'
 import enterDetails from '../components/enterDetails'
 import db from '../firebase'
+import Router from 'next/router'
 
 const Home = () => {
   const [data, setData] = useState({ loading: true })
@@ -22,13 +23,19 @@ const Home = () => {
     }
   }, [status, refresh])
   console.log(data)
-  if (data.loading) {
+
+  if (status === 'unauthenticated') {
+    Router.push('/login')
+  }
+  if (data.loading || status === 'loading') {
     return <Loading />
   }
   if (data.block) {
     return <BunkMatesPage session={session} data={data} />
   }
-  return <DetailsPage session={session} setRefresh={setRefresh} />
+  if (status === 'authenticated') {
+    return <DetailsPage session={session} setRefresh={setRefresh} />
+  }
 }
 
 export default Home
