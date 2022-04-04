@@ -9,8 +9,8 @@ function fetchUser(reg, setData) {
       if (user.exists) {
         const data = user.data()
         db.collection('Blocks')
-          .doc(data.block)
-          .collection('Rooms')
+          .doc(data.gender)
+          .collection(data.block)
           .doc(data.room)
           .get()
           .then((bunkmates) => {
@@ -19,6 +19,7 @@ function fetchUser(reg, setData) {
                 bunkMates: bunkmates.data().bunkMates,
                 block: data.block,
                 room: data.room,
+                type: data.type,
               })
             } else {
               setData({ loading: false })

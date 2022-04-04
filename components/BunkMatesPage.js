@@ -94,7 +94,8 @@ function BunkMatesPage({ session, data }) {
         Your BunkMates
       </h2>
       <p className="px-5 text-gray-600 md:px-20">
-        {data.room}, {data.block}-Block
+        {data.room}, {data.block}-Block,{' '}
+        {data.gender == 'G' ? 'Gents Hostel' : 'Ladies Hostel'}
       </p>
       <p className="mb-5 px-5 text-gray-600 md:px-20">
         {data.bunkMates.length} Bunkmates Found!
