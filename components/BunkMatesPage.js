@@ -69,22 +69,24 @@ function BunkMatesPage({ session, data }) {
         image={session?.user.image}
         name={session?.user.name.replace(regex, '')}
       />
-      <div className="mt-10 flex flex-col space-y-4 px-20">
-        <h1 className="text-6xl">
+      <div className="mt-10 flex flex-col space-y-4 px-5 md:px-20">
+        <h1 className="text-3xl md:text-6xl">
           Hello, {session?.user.name.replace(regex, '')}
         </h1>
-        <h3 className="flex flex-col text-xl text-gray-400">
+        <h3 className="flex flex-col text-gray-400 md:text-xl">
           We got you covered<span>Here are your BunkMates!</span>
         </h3>
       </div>
-      <h2 className="mt-10 px-20 text-xl font-bold">Your BunkMates</h2>
-      <p className="px-20 text-gray-600">
+      <h2 className="mt-10 px-5 text-lg font-bold md:px-20 md:text-xl">
+        Your BunkMates
+      </h2>
+      <p className="px-5 text-gray-600 md:px-20">
         {data.room}, {data.block}-Block
       </p>
-      <p className="mb-5 px-20 text-gray-600">
+      <p className="mb-5 px-5 text-gray-600 md:px-20">
         {data.bunkMates.length} Bunkmates Found!
       </p>
-      <div className="grid grid-cols-4 gap-4 px-28 pt-5">
+      <div className="mx-auto grid grid-cols-1 gap-4 pt-5 md:mx-0 md:grid-cols-2 md:px-28 lg:grid-cols-4">
         {data.bunkMates.map((bunkMate) => {
           return (
             <div style={{ width: 270, margin: 'auto' }}>

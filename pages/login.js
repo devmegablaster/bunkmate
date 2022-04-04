@@ -6,19 +6,19 @@ function login({ providers }) {
   return (
     <div className=" h-screen w-screen bg-white text-black">
       <Header />
-      <div className="mt-8 grid grid-cols-2">
-        <div className="flex flex-col space-y-14 px-20">
-          <h1 className="flex flex-col text-7xl">
+      <div className="mt-8 grid grid-cols-1 justify-items-center space-y-4 md:grid-cols-2 md:justify-items-start md:space-y-0">
+        <div className="flex flex-col space-y-7 px-5 md:space-y-14 md:px-20">
+          <h1 className="flex flex-col text-3xl md:text-7xl">
             Find your <span>Roommate</span>
           </h1>
-          <h3 className="flex flex-col text-xl text-gray-400">
+          <h3 className="flex flex-col text-base text-gray-400 md:text-xl">
             Login with your VIT Email Address to find your<span>Roommate!</span>
           </h3>
           {Object.values(providers).map((provider) => {
             return (
               <div key={provider.name}>
                 <button
-                  className=" flex items-center rounded-md bg-blue-500  px-2 py-1 font-sans text-lg font-normal text-white duration-150 hover:bg-blue-600 hover:shadow-lg active:scale-95"
+                  className=" flex items-center rounded-md  bg-blue-500 px-2 py-1 font-sans font-normal text-white duration-150 hover:bg-blue-600 hover:shadow-lg active:scale-95 md:text-lg"
                   onClick={() => signIn(provider.id, { callbackUrl: '/' })}
                 >
                   <img
@@ -35,10 +35,10 @@ function login({ providers }) {
         <img
           src="https://gist.githubusercontent.com/MEGA-BLASTER2004/cfe069e9ee0788873a2d8a6bd46c250d/raw/a5fea8b2557f2c67201c3bfd31f408a201e7cc47/LandingSvg.svg"
           alt=""
-          className="h-[29rem]"
+          className="h-[29rem] p-4 md:p-0"
         />
       </div>
-      <div className="mt-16 flex items-center justify-between px-20">
+      <div className="mt-4 flex items-center justify-between px-5 pb-10 md:mt-16 md:px-20">
         <div className="flex flex-col">
           <h3>For Queries and Suggestions related to BunkMates</h3>
           <div className="mt-4 flex items-center space-x-2">
