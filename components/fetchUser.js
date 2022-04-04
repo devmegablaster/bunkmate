@@ -19,7 +19,7 @@ function fetchUser(reg, setData) {
                 bunkMates: bunkmates.data().bunkMates,
                 block: data.block,
                 room: data.room,
-                type: data.type,
+                type: data.gender,
               })
             } else {
               setData({ loading: false })
