@@ -6,7 +6,7 @@ function login({ providers }) {
   return (
     <div className=" h-screen w-screen bg-white text-black">
       <Header />
-      <div className="mt-8 grid grid-cols-1 justify-items-center space-y-4 md:grid-cols-2 md:justify-items-start md:space-y-0">
+      <div className=" mt-8 grid w-screen grid-cols-1 justify-items-center space-y-4 md:grid-cols-2 md:justify-items-start md:space-y-0 2xl:justify-items-center">
         <div className="flex flex-col space-y-7 px-5 md:space-y-14 md:px-20">
           <h1 className="flex flex-col text-3xl md:text-7xl">
             Find your <span>Roommate</span>
@@ -38,7 +38,7 @@ function login({ providers }) {
           className="h-[29rem] p-4 md:p-0"
         />
       </div>
-      <div className="mt-4 flex items-center justify-between px-5 pb-10 md:mt-16 md:px-20">
+      <div className=" mt-4 flex items-center justify-between px-5 pb-10 md:mt-16 md:px-20 2xl:px-64">
         <div className="flex flex-col">
           <h3>For Queries and Suggestions related to BunkMates</h3>
           <div className="mt-4 flex items-center space-x-2">
