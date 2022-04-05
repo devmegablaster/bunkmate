@@ -9,6 +9,9 @@ function DetailsPage({ session, setRefresh }) {
     /([+-]?(?=\.\d|\d)(?:\d+)?(?:\.?\d*))(?:[eE]([+-]?\d+))?[a-zA-Z]+[0-9][0-9][0-9][0-9]/
   return (
     <div className="h-screen w-screen bg-white">
+      <header>
+        <title>Register!</title>
+      </header>
       <Header
         name={session?.user.name.replace(regex, '')}
         image={session?.user.image}

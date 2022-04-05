@@ -5,6 +5,9 @@ import Header from '../components/Header'
 function login({ providers }) {
   return (
     <div className=" h-screen w-screen bg-white text-black">
+      <header>
+        <title>BunkMate</title>
+      </header>
       <Header />
       <div className=" mt-8 grid w-screen grid-cols-1 justify-items-center space-y-4 md:grid-cols-2 md:justify-items-start md:space-y-0 2xl:justify-items-center">
         <div className="flex flex-col space-y-7 px-5 md:space-y-14 md:px-20">

@@ -1,6 +1,14 @@
-import React, { useState } from 'react'
-import { Select, Input, Button, Textarea, Notification } from '@mantine/core'
+import React, { useEffect, useState } from 'react'
+import {
+  Select,
+  Input,
+  Button,
+  Textarea,
+  Notification,
+  Checkbox,
+} from '@mantine/core'
 import { Check, X } from 'tabler-icons-react'
+import axios from 'axios'
 import enterDetails from './enterDetails'
 
 function Form({ name, reg, setRefresh, mail }) {

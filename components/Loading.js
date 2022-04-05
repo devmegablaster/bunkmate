@@ -5,6 +5,9 @@ import Header from './Header'
 function Loading() {
   return (
     <div className="flex h-screen w-screen flex-col items-center justify-center">
+      <header>
+        <title>Loading...</title>
+      </header>
       <Header />
       <Loader color="green" className="mt-10" size="xl" />
     </div>

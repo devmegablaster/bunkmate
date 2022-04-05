@@ -20,6 +20,9 @@ function BunkMatesPage({ session, data }) {
     /([+-]?(?=\.\d|\d)(?:\d+)?(?:\.?\d*))(?:[eE]([+-]?\d+))?[a-zA-Z]+[0-9][0-9][0-9][0-9]/
   return (
     <div>
+      <header>
+        <title>{`${data.room}, ${data.block}-Block` || 'Loading...'}</title>
+      </header>
       <Modal
         opened={open}
         radius={10}
@@ -57,9 +60,7 @@ function BunkMatesPage({ session, data }) {
             {more.para !== '' ? more.para : '-'}
           </p>
           <h1 className="mt-3 font-bold">Email Address</h1>
-          <p className="text-center font-light">
-            {more.mail !== '' ? more.mail : '-'}
-          </p>
+          <p className="text-center">{more.mail !== '' ? more.mail : '-'}</p>
           <h1 className="mt-3 font-bold">Phone Number</h1>
           <p>{more.phone !== '' ? more.phone : '-'}</p>
           {console.log(more)}
