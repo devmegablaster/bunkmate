@@ -95,7 +95,7 @@ function BunkMatesPage({ session, data }) {
       </h2>
       <p className="px-5 text-gray-600 md:px-20">
         {data.room}, {data.block}-Block,{' '}
-        {data.type == 'G' ? 'Gents Hostel' : 'Ladies Hostel'}
+        {data.type == 'G' ? 'Mens Hostel' : 'Ladies Hostel'}
       </p>
       <p className="mb-5 px-5 text-gray-600 md:px-20">
         {data.bunkMates.length} Bunkmates Found!
@@ -103,7 +103,10 @@ function BunkMatesPage({ session, data }) {
       <div className="mx-auto mb-10 grid grid-cols-1 gap-4 pt-5 md:mx-0 md:grid-cols-2 md:px-28 lg:grid-cols-4">
         {data.bunkMates.map((bunkMate) => {
           return (
-            <div style={{ width: 270, margin: 'auto' }}>
+            <div
+              className="duration-150 hover:scale-105 hover:shadow-xl"
+              style={{ width: 270, margin: 'auto' }}
+            >
               <Card shadow="md" radius={10} p="md" className="h-80">
                 <Card.Section>
                   <Image
