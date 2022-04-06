@@ -9,9 +9,11 @@ import {
   Group,
   Modal,
   useMantineTheme,
+  Tooltip,
 } from '@mantine/core'
 import Router from 'next/router'
 import _ from 'lodash'
+import { InfoCircle } from 'tabler-icons-react'
 
 function BunkMatesPage({ session, data }) {
   const [more, setMore] = useState({})
@@ -85,9 +87,22 @@ function BunkMatesPage({ session, data }) {
         name={session?.user.name.replace(regex, '')}
       />
       <div className="mt-10 flex flex-col space-y-4 px-5 md:px-20">
-        <h1 className="text-3xl md:text-6xl">
-          Hello, {session?.user.name.replace(regex, '')}
-        </h1>
+        <div className="flex items-center space-x-3 md:space-x-4">
+          <h1 className="text-3xl md:text-6xl">
+            Hello, {session?.user.name.replace(regex, '')}
+          </h1>
+          <Tooltip
+            wrapLines
+            width={220}
+            withArrow
+            transition="fade"
+            transitionDuration={200}
+            position="right"
+            label="In order to update your Details, please mail at devmegablaster@gmail.com if you have a valid reason!"
+          >
+            <InfoCircle className="h-7 w-7 rounded-lg p-1 duration-100 hover:bg-gray-200 md:h-10 md:w-10 " />
+          </Tooltip>
+        </div>
         <h3 className="flex flex-col text-gray-400 md:text-xl">
           We got you covered<span>Here are your BunkMates!</span>
         </h3>
@@ -102,7 +117,7 @@ function BunkMatesPage({ session, data }) {
       <p className="mb-5 px-5 text-gray-600 md:px-20">
         {data.bunkMates.length} Bunkmates Found!
       </p>
-      <div className="mx-auto mb-10 grid grid-cols-1 gap-10 pt-5 md:mx-0 md:grid-cols-2 md:px-28 lg:grid-cols-4 2xl:grid-cols-5">
+      <div className="mx-auto mb-10 grid grid-cols-1 gap-10 pt-5 md:mx-0 md:grid-cols-2 md:px-28 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
         {data.bunkMates.map((bunkMate) => {
           return (
             <div
@@ -120,7 +135,15 @@ function BunkMatesPage({ session, data }) {
 
                 <Group position="apart" className="mt-2">
                   <Text weight={500}>
-                    {bunkMate.name.split(' ')[0]} {bunkMate.name.split(' ')[1]}
+                    {_.truncate(
+                      bunkMate.name.split(' ')[0] +
+                        ' ' +
+                        bunkMate.name.split(' ')[1],
+                      {
+                        length: 16,
+                        omission: '...',
+                      }
+                    )}
                   </Text>
                   <Badge color="blue" variant="light">
                     {bunkMate.reg}

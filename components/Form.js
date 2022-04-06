@@ -113,7 +113,7 @@ function Form({ name, reg, setRefresh, mail }) {
           onChange={setType}
           data={[
             { value: 'L', label: 'Ladies Hostel' },
-            { value: 'G', label: 'Gents Hostel' },
+            { value: 'G', label: 'Mens Hostel' },
           ]}
         />
       </div>

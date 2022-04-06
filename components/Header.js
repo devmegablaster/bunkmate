@@ -13,7 +13,7 @@ function Header({ name, image }) {
         <div className="flex items-center space-x-2">
           <img
             src={image}
-            className="h-10 w-10 rounded-full md:h-12 md:w-12"
+            className="h-10 w-10 rounded-full border-2 border-blue-500 md:h-12 md:w-12"
             alt=""
           />
           <div>
