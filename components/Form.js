@@ -52,7 +52,7 @@ function Form({ name, reg, setRefresh, mail }) {
           { value: 'H', label: 'H Block' },
         ]
   return (
-    <div className="mt-10 flex max-w-lg flex-col space-y-2">
+    <div className="mt-8 flex max-w-lg flex-col space-y-2">
       <div
         className={`fixed bottom-0 ${
           error ? 'flex' : 'hidden'
