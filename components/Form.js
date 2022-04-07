@@ -167,11 +167,11 @@ function Form({ name, reg, setRefresh, mail }) {
             if (block && name && room && block && bio && type) {
               enterDetails(
                 block,
-                room,
+                room.trim(),
                 name,
                 reg,
                 phone,
-                insta,
+                insta.trim(),
                 bio,
                 mail,
                 type
