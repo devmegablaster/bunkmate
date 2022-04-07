@@ -30,7 +30,7 @@ function DetailsPage({ session, setRefresh }) {
       </div>
       <div className="fixed bottom-0 right-10 flex h-[500px] justify-end px-10">
         <img
-          className="hidden h-[500px] md:flex"
+          className="hidden h-[500px] lg:flex"
           src="https://gist.githubusercontent.com/MEGA-BLASTER2004/25d8dba60b6ccf218a077ab79fa35adb/raw/81ec6888aca845e8c3ed305a681af62c47b36bf4/Friends.svg"
           alt=""
         />
