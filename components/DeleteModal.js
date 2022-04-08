@@ -106,7 +106,7 @@ function DeleteModal({ deleteOpen, setDeleteOpen, data, timer, setTimer }) {
         </div>
       </Modal>
       <div
-        className={` fixed bottom-4 right-2 z-50 md:bottom-10 md:right-5 ${
+        className={` fixed bottom-4 z-50 md:bottom-10 md:right-5 ${
           notif ? 'flex' : 'hidden'
         }`}
       >
