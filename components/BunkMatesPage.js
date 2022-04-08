@@ -127,9 +127,9 @@ function BunkMatesPage({ session, data }) {
             Hello, {session?.user.name.replace(regex, '')}
           </h1>
           <Menu
-            className="ml-1 rounded-md hover:bg-transparent"
+            className="ml-1 select-none rounded-md hover:bg-transparent"
             control={
-              <Button className="bg-gray-200 px-1 text-black duration-150 hover:bg-gray-300">
+              <Button className="select-none bg-gray-200 px-1 text-black duration-150 hover:bg-gray-300">
                 <Edit />
               </Button>
             }

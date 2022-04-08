@@ -152,11 +152,12 @@ function UpdatesModal({
         </div>
       </Modal>
       <div
-        className={` fixed bottom-5 right-5 z-50 ${notif ? 'flex' : 'hidden'}`}
+        className={` fixed bottom-10 right-5 z-50 ${notif ? 'flex' : 'hidden'}`}
       >
         <Notification
           icon={<Check size={18} />}
           color="teal"
+          className="border-[1.5px] border-green-500 px-6 py-4 shadow-lg shadow-green-200"
           title="Your Request has beed processed successfully!"
           onClose={() => setNotif(false)}
         >
