@@ -11,6 +11,7 @@ import {
 import { X, Check } from 'tabler-icons-react'
 import { useState } from 'react'
 import UpdateAxios from './UpdateAxios'
+import db from '../firebase'
 
 function UpdatesModal({
   data,
@@ -108,7 +109,7 @@ function UpdatesModal({
               value={changes}
               onChange={(e) => setChanges(e.target.value)}
             />
-            <h3 className="mb-2 text-sm text-gray-600">
+            <h3 className="mb-2 mt-2 text-sm text-gray-600">
               Enter New Room Number
             </h3>
             <Input value={room} onChange={(e) => setRoom(e.target.value)} />
@@ -130,20 +131,19 @@ function UpdatesModal({
               size="sm"
               onClick={async () => {
                 setClicked(true)
-                const val = await UpdateAxios(
+                db.collection(type).doc(data.reg).set({
+                  block: changes,
                   type,
-                  type != 'room' ? { changes } : { block: changes, room: room },
-                  data.reg
-                )
-                if (val.data.status == 'OK') {
-                  setNotif(true)
-                  setIsOpenedUp(false)
-                  setTimeout(() => {
-                    setClicked(false)
-                    setChanges('')
-                    setRoom('')
-                  }, [1000])
-                }
+                  room,
+                  data,
+                })
+                setNotif(true)
+                setIsOpenedUp(false)
+                setTimeout(() => {
+                  setClicked(false)
+                  setChanges('')
+                  setRoom('')
+                }, [1000])
               }}
             >
               Update {viewBetter}
@@ -152,7 +152,9 @@ function UpdatesModal({
         </div>
       </Modal>
       <div
-        className={` fixed bottom-10 right-5 z-50 ${notif ? 'flex' : 'hidden'}`}
+        className={` fixed bottom-4 right-2 z-50 md:bottom-10 md:right-5 ${
+          notif ? 'flex' : 'hidden'
+        }`}
       >
         <Notification
           icon={<Check size={18} />}
