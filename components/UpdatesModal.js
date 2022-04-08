@@ -131,19 +131,23 @@ function UpdatesModal({
               size="sm"
               onClick={async () => {
                 setClicked(true)
-                db.collection(type).doc(data.reg).set({
-                  block: changes,
-                  type,
-                  room,
-                  data,
-                })
-                setNotif(true)
-                setIsOpenedUp(false)
-                setTimeout(() => {
-                  setClicked(false)
-                  setChanges('')
-                  setRoom('')
-                }, [1000])
+                db.collection(type)
+                  .doc(data.reg)
+                  .set({
+                    block: changes,
+                    type,
+                    room,
+                    data,
+                  })
+                  .then(() => {
+                    setNotif(true)
+                    setIsOpenedUp(false)
+                    setTimeout(() => {
+                      setClicked(false)
+                      setChanges('')
+                      setRoom('')
+                    }, [1000])
+                  })
               }}
             >
               Update {viewBetter}
