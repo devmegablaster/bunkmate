@@ -21,10 +21,6 @@ function DetailsPage({ session, setRefresh }) {
         <h4 className="mt-6 text-lg text-gray-400 md:text-2xl">
           To find your Roommate, Enter some of your details!
         </h4>
-        <h4 className="mt-3 text-sm font-bold text-blue-400">
-          Please Enter your details carefully as this information cannot be
-          changed!
-        </h4>
         <Form
           name={session?.user.name.replace(regex, '')}
           reg={session?.user.name.match(regex)[0]}

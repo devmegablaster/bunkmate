@@ -9,15 +9,37 @@ import {
   Group,
   Modal,
   useMantineTheme,
+  Menu,
+  Divider,
   Tooltip,
 } from '@mantine/core'
 import Router from 'next/router'
+import UpdatesModal from './UpdatesModal'
+import ReportModal from './ReportModal'
 import _ from 'lodash'
-import { InfoCircle } from 'tabler-icons-react'
+import {
+  Settings,
+  Search,
+  Photo,
+  MessageCircle,
+  Trash,
+  ArrowsLeftRight,
+  BrandInstagram,
+  Phone,
+  InfoSquare,
+  Bed,
+  Bug,
+  Apps,
+  Menu2,
+  Edit,
+} from 'tabler-icons-react'
 
 function BunkMatesPage({ session, data }) {
   const [more, setMore] = useState({})
   const [open, setOpen] = useState(false)
+  const [updateType, setUpdateType] = useState('')
+  const [isOpenedUp, setIsOpenedUp] = useState(false)
+  const [reportOpen, setReportOpen] = useState(false)
   const regex =
     /([+-]?(?=\.\d|\d)(?:\d+)?(?:\.?\d*))(?:[eE]([+-]?\d+))?[a-zA-Z]+[0-9][0-9][0-9][0-9]/
   return (
@@ -25,6 +47,19 @@ function BunkMatesPage({ session, data }) {
       <header>
         <title>{`${data.room}, ${data.block}-Block` || 'Loading...'}</title>
       </header>
+      <UpdatesModal
+        isOpenedUp={isOpenedUp}
+        setIsOpenedUp={setIsOpenedUp}
+        roomNo={data.room}
+        block={data.block}
+        data={data.bunkMates.filter((bunkMate) => {
+          if (bunkMate.mail == session?.user.email) {
+            return true
+          }
+        })}
+        type={updateType}
+      />
+      <ReportModal reportOpen={reportOpen} setReportOpen={setReportOpen} />
       <Modal
         opened={open}
         radius={10}
@@ -87,21 +122,92 @@ function BunkMatesPage({ session, data }) {
         name={session?.user.name.replace(regex, '')}
       />
       <div className="mt-10 flex flex-col space-y-4 px-5 md:px-20">
-        <div className="flex items-center space-x-3 md:space-x-4">
+        <div className="flex items-center space-x-3 md:space-x-5">
           <h1 className="text-3xl md:text-6xl">
             Hello, {session?.user.name.replace(regex, '')}
           </h1>
-          <Tooltip
-            wrapLines
-            width={220}
-            withArrow
-            transition="fade"
-            transitionDuration={200}
-            position="right"
-            label="In order to update your Details, please mail at devmegablaster@gmail.com if you have a valid reason!"
+          <Menu
+            className="ml-1 rounded-md hover:bg-transparent"
+            control={
+              <Button className="bg-gray-200 px-1 text-black duration-150 hover:bg-gray-300">
+                <Edit />
+              </Button>
+            }
+            radius={0}
           >
-            <InfoCircle className="h-7 w-7 rounded-lg p-1 duration-100 hover:bg-gray-200 md:h-10 md:w-10 " />
-          </Tooltip>
+            <Menu.Label>Profile Changes</Menu.Label>
+            <Menu.Item
+              icon={<BrandInstagram size={14} />}
+              className="hover:bg-gray-100"
+              onClick={() => {
+                setUpdateType('insta')
+                setIsOpenedUp(true)
+              }}
+            >
+              Instagram
+            </Menu.Item>
+            <Menu.Item
+              icon={<Phone size={14} />}
+              onClick={() => {
+                setUpdateType('phone')
+                setIsOpenedUp(true)
+              }}
+              className="hover:bg-gray-100"
+            >
+              Phone Number
+            </Menu.Item>
+            <Menu.Item
+              icon={<InfoSquare size={14} />}
+              onClick={() => {
+                setUpdateType('para')
+                setIsOpenedUp(true)
+              }}
+              className="hover:bg-gray-100"
+            >
+              Bio
+            </Menu.Item>
+
+            <Menu.Item
+              icon={<Bed size={14} />}
+              onClick={() => {
+                setUpdateType('room')
+                setIsOpenedUp(true)
+              }}
+              className="hover:bg-gray-100"
+            >
+              Room
+            </Menu.Item>
+            <Divider />
+            <Menu.Item
+              icon={<Bug size={14} />}
+              className="hover:bg-gray-100"
+              onClick={() => {
+                setReportOpen(true)
+              }}
+            >
+              Report a Bug
+            </Menu.Item>
+            <Menu.Item
+              icon={<Apps size={14} />}
+              className="hover:bg-gray-100"
+              onClick={() => {
+                setReportOpen(true)
+              }}
+            >
+              Suggestions
+            </Menu.Item>
+
+            <Menu.Item
+              color="red"
+              className="hover:bg-gray-100"
+              icon={<Trash size={14} />}
+              onClick={() => {
+                setReportOpen(true)
+              }}
+            >
+              Delete my Profile
+            </Menu.Item>
+          </Menu>
         </div>
         <h3 className="flex flex-col text-gray-400 md:text-xl">
           We got you covered<span>Here are your BunkMates!</span>
