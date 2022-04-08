@@ -16,6 +16,7 @@ import {
 import Router from 'next/router'
 import UpdatesModal from './UpdatesModal'
 import ReportModal from './ReportModal'
+import DeleteModal from './DeleteModal'
 import _ from 'lodash'
 import {
   Settings,
@@ -38,8 +39,11 @@ function BunkMatesPage({ session, data }) {
   const [more, setMore] = useState({})
   const [open, setOpen] = useState(false)
   const [updateType, setUpdateType] = useState('')
+  const [deleteOpen, setDeleteOpen] = useState(false)
   const [isOpenedUp, setIsOpenedUp] = useState(false)
   const [reportOpen, setReportOpen] = useState(false)
+  const [reportType, setReportType] = useState('')
+  const [timer, setTimer] = useState(5)
   const regex =
     /([+-]?(?=\.\d|\d)(?:\d+)?(?:\.?\d*))(?:[eE]([+-]?\d+))?[a-zA-Z]+[0-9][0-9][0-9][0-9]/
   return (
@@ -59,7 +63,27 @@ function BunkMatesPage({ session, data }) {
         })}
         type={updateType}
       />
-      <ReportModal reportOpen={reportOpen} setReportOpen={setReportOpen} />
+      <ReportModal
+        data={data.bunkMates.filter((bunkMate) => {
+          if (bunkMate.mail == session?.user.email) {
+            return true
+          }
+        })}
+        type={reportType}
+        reportOpen={reportOpen}
+        setReportOpen={setReportOpen}
+      />
+      <DeleteModal
+        setDeleteOpen={setDeleteOpen}
+        deleteOpen={deleteOpen}
+        data={data.bunkMates.filter((bunkMate) => {
+          if (bunkMate.mail == session?.user.email) {
+            return true
+          }
+        })}
+        timer={timer}
+        setTimer={setTimer}
+      />
       <Modal
         opened={open}
         radius={10}
@@ -182,6 +206,7 @@ function BunkMatesPage({ session, data }) {
               icon={<Bug size={14} />}
               className="hover:bg-gray-100"
               onClick={() => {
+                setReportType('bug')
                 setReportOpen(true)
               }}
             >
@@ -191,6 +216,7 @@ function BunkMatesPage({ session, data }) {
               icon={<Apps size={14} />}
               className="hover:bg-gray-100"
               onClick={() => {
+                setReportType('suggestion')
                 setReportOpen(true)
               }}
             >
@@ -202,7 +228,8 @@ function BunkMatesPage({ session, data }) {
               className="hover:bg-gray-100"
               icon={<Trash size={14} />}
               onClick={() => {
-                setReportOpen(true)
+                setTimer(10)
+                setDeleteOpen(true)
               }}
             >
               Delete my Profile

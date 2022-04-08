@@ -10,7 +10,6 @@ import {
 } from '@mantine/core'
 import { X, Check } from 'tabler-icons-react'
 import { useState } from 'react'
-import UpdateAxios from './UpdateAxios'
 import db from '../firebase'
 
 function UpdatesModal({
@@ -134,7 +133,7 @@ function UpdatesModal({
                 db.collection(type)
                   .doc(data.reg)
                   .set({
-                    block: changes,
+                    changes,
                     type,
                     room,
                     data,
