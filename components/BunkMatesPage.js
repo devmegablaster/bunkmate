@@ -153,7 +153,7 @@ function BunkMatesPage({ session, data }) {
           <Menu
             className="ml-1 select-none rounded-md hover:bg-transparent"
             control={
-              <Button className="select-none bg-gray-200 px-1 text-black duration-150 hover:bg-gray-300">
+              <Button className="my-auto h-6 w-6 select-none bg-gray-200 px-1 text-black duration-150 hover:bg-gray-300 md:h-8 md:w-8">
                 <Edit />
               </Button>
             }
