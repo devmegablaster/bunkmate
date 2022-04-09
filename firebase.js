@@ -1,15 +1,14 @@
 import firebase from 'firebase'
 
 const firebaseConfig = {
-  apiKey: process.env.FIREBASE_API,
-  authDomain: 'bunkmate-d219e.firebaseapp.com',
-  projectId: 'bunkmate-d219e',
-  storageBucket: 'bunkmate-d219e.appspot.com',
-  messagingSenderId: '312835789875',
-  appId: '1:312835789875:web:bd60baf33b4f2c167a7f46',
-  measurementId: 'G-4WCJZZ26CV',
+  apiKey: 'AIzaSyBJGjwYDihh-O1-O0DcolWcfIZ7pyJvtHw',
+  authDomain: 'bunkmates-74b8e.firebaseapp.com',
+  projectId: 'bunkmates-74b8e',
+  storageBucket: 'bunkmates-74b8e.appspot.com',
+  messagingSenderId: '556794576679',
+  appId: '1:556794576679:web:b8e61e2ae3c4ad4742b302',
+  measurementId: 'G-J1MTVTVJ7W',
 }
-
 const app = !firebase.apps.length
   ? firebase.initializeApp(firebaseConfig)
   : firebase.app()
