@@ -1,7 +1,7 @@
 import firebase from 'firebase'
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyBJGjwYDihh-O1-O0DcolWcfIZ7pyJvtHw',
+  apiKey: process.env.FIREBASE_API,
   authDomain: 'bunkmates-74b8e.firebaseapp.com',
   projectId: 'bunkmates-74b8e',
   storageBucket: 'bunkmates-74b8e.appspot.com',
