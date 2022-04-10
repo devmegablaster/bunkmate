@@ -2,6 +2,7 @@ import React from 'react'
 import db from '../firebase'
 
 function fetchUser(reg, setData, setUser) {
+  var temp = []
   db.collection('users')
     .doc(reg)
     .get()
@@ -13,21 +14,17 @@ function fetchUser(reg, setData, setUser) {
           .doc(data.gender)
           .collection(data.block)
           .doc(data.room)
-          .get()
-          .then((bunkmates) => {
-            if (bunkmates.exists) {
-              setData({
-                bunkMates: bunkmates.data().bunkMates,
-                block: data.block,
-                room: data.room,
-                type: data.gender,
-              })
-            } else {
-              setData({ loading: false })
-            }
+          .collection('BunkMates')
+          .onSnapshot((snap) => {
+            snap.forEach((bunkMate) => {
+              temp.push(bunkMate.data())
+            })
+            setData({ bunkMates: temp })
+            temp = []
           })
       } else {
         setData({ loading: false })
+        return
       }
     })
 }

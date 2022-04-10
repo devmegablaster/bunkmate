@@ -24,7 +24,6 @@ const Home = () => {
       setRefresh(false)
     }
   }, [status, refresh])
-  console.log(data)
 
   if (status === 'unauthenticated') {
     Router.push('/login')
@@ -32,10 +31,10 @@ const Home = () => {
   if (data.loading || status === 'loading') {
     return <Loading />
   }
-  if (data.block) {
+  if (data.bunkMates?.length >= 1) {
     return <BunkMatesPage session={session} data={data} user={user} />
   }
-  if (status === 'authenticated') {
+  if (status === 'authenticated' && data.loading == false) {
     return <DetailsPage session={session} setRefresh={setRefresh} />
   }
 }

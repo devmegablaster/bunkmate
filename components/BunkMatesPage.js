@@ -49,21 +49,21 @@ function BunkMatesPage({ session, data, user }) {
   return (
     <div>
       <header>
-        <title>{`${data.room}, ${data.block}-Block` || 'Loading...'}</title>
+        <title>{`${user.room}, ${user.block}-Block` || 'Loading...'}</title>
       </header>
       <UpdatesModal
         isOpenedUp={isOpenedUp}
         setIsOpenedUp={setIsOpenedUp}
         user={user}
-        roomNo={data.room}
-        block={data.block}
+        roomNo={user.room}
+        block={user.block}
         data={data.bunkMates.filter((bunkMate) => {
           if (bunkMate.mail == session?.user.email) {
             return true
           }
         })}
         type={updateType}
-        gender={data.type}
+        gender={user.gender}
       />
       <ReportModal
         data={data.bunkMates.filter((bunkMate) => {
@@ -85,9 +85,9 @@ function BunkMatesPage({ session, data, user }) {
         })}
         timer={timer}
         setTimer={setTimer}
-        gender={data.type}
-        currentBlock={data.block}
-        currentRoom={data.room}
+        gender={user.gender}
+        currentBlock={user.block}
+        currentRoom={user.room}
       />
       <Modal
         opened={open}
@@ -249,8 +249,8 @@ function BunkMatesPage({ session, data, user }) {
         Your BunkMates
       </h2>
       <p className="px-5 text-gray-600 md:px-20">
-        {data.room}, {data.block}-Block,{' '}
-        {data.type == 'G' ? 'Mens Hostel' : 'Ladies Hostel'}
+        {user.room}, {user.block}-Block,{' '}
+        {user.gender == 'G' ? 'Mens Hostel' : 'Ladies Hostel'}
       </p>
       <p className="mb-5 px-5 text-gray-600 md:px-20">
         {data.bunkMates.length} Bunkmates Found!

@@ -17,52 +17,17 @@ function enterDetails(
     .doc(gender)
     .collection(block)
     .doc(room)
-    .get()
-    .then((doc) => {
-      if (doc.exists) {
-        db.collection('Blocks')
-          .doc(gender)
-          .collection(block)
-          .doc(room)
-          .update({
-            bunkMates: firebase.firestore.FieldValue.arrayUnion({
-              name,
-              reg,
-              phone,
-              insta,
-              para,
-              mail,
-            }),
-          })
-          .then(() => {
-            console.log('Document successfully written!')
-          })
-          .catch((error) => {
-            console.error('Error writing document: ', error)
-          })
-      } else {
-        db.collection('Blocks')
-          .doc(gender)
-          .collection(block)
-          .doc(room)
-          .set({
-            bunkMates: firebase.firestore.FieldValue.arrayUnion({
-              name,
-              reg,
-              phone,
-              insta,
-              para,
-              mail,
-            }),
-          })
-          .then(() => {
-            console.log('Document successfully written!')
-          })
-          .catch((error) => {
-            console.error('Error writing document: ', error)
-          })
-      }
+    .collection('BunkMates')
+    .doc(reg)
+    .set({
+      name,
+      reg,
+      phone,
+      insta,
+      para,
+      mail,
     })
+
   db.collection('users').doc(reg).set({ name, reg, block, room, mail, gender })
 }
 
