@@ -12,13 +12,15 @@ import Router from 'next/router'
 
 const Home = () => {
   const [data, setData] = useState({ loading: true })
+  const [user, setUser] = useState({})
   const [refresh, setRefresh] = useState(false)
   const regex =
     /([+-]?(?=\.\d|\d)(?:\d+)?(?:\.?\d*))(?:[eE]([+-]?\d+))?[a-zA-Z]+[0-9][0-9][0-9][0-9]/
   const { data: session, status } = useSession()
   useEffect(() => {
     if ((status === 'authenticated' && data.loading) || refresh) {
-      fetchUser(session?.user?.name?.match(regex)[0], setData)
+      fetchUser(session?.user?.name?.match(regex)[0], setData, setUser)
+      console.log('USER FETCHING...')
       setRefresh(false)
     }
   }, [status, refresh])
@@ -31,7 +33,7 @@ const Home = () => {
     return <Loading />
   }
   if (data.block) {
-    return <BunkMatesPage session={session} data={data} />
+    return <BunkMatesPage session={session} data={data} user={user} />
   }
   if (status === 'authenticated') {
     return <DetailsPage session={session} setRefresh={setRefresh} />

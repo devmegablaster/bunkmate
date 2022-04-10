@@ -7,6 +7,7 @@ import {
   Button,
   Textarea,
   Notification,
+  Select,
 } from '@mantine/core'
 import { X, Check } from 'tabler-icons-react'
 import { useState } from 'react'
@@ -19,7 +20,41 @@ function UpdatesModal({
   setIsOpenedUp,
   roomNo,
   block,
+  gender,
+  user,
 }) {
+  const blockData =
+    user.gender == 'G'
+      ? [
+          { value: 'A', label: 'A Block' },
+          { value: 'B', label: 'B Block' },
+          { value: 'C', label: 'C Block' },
+          { value: 'D', label: 'D Block' },
+          { value: 'E', label: 'E Block' },
+          { value: 'F', label: 'F Block' },
+          { value: 'G', label: 'G Block' },
+          { value: 'H', label: 'H Block' },
+          { value: 'I', label: 'I Block' },
+          { value: 'J', label: 'J Block' },
+          { value: 'K', label: 'K Block' },
+          { value: 'L', label: 'L Block' },
+          { value: 'M', label: 'M Block' },
+          { value: 'N', label: 'N Block' },
+          { value: 'O', label: 'O Block' },
+          { value: 'P', label: 'P Block' },
+          { value: 'Q', label: 'Q Block' },
+          { value: 'R', label: 'R Block' },
+        ]
+      : [
+          { value: 'A', label: 'A Block' },
+          { value: 'B', label: 'B Block' },
+          { value: 'C', label: 'C Block' },
+          { value: 'D', label: 'D Block' },
+          { value: 'E', label: 'E Block' },
+          { value: 'F', label: 'F Block' },
+          { value: 'G', label: 'G Block' },
+          { value: 'H', label: 'H Block' },
+        ]
   data = data[0]
   const [changes, setChanges] = useState('')
   const [room, setRoom] = useState('')
@@ -104,9 +139,13 @@ function UpdatesModal({
         ) : (
           <div>
             <h3 className="mb-2 text-sm text-gray-600">Enter New Block</h3>
-            <Input
+            <Select
+              label=""
+              placeholder="Pick one!"
+              searchable
               value={changes}
-              onChange={(e) => setChanges(e.target.value)}
+              onChange={setChanges}
+              data={blockData}
             />
             <h3 className="mb-2 mt-2 text-sm text-gray-600">
               Enter New Room Number
@@ -129,24 +168,30 @@ function UpdatesModal({
               className="mx-auto mb-4 mt-4 w-fit bg-gradient-to-r from-teal-600 to-lime-600"
               size="sm"
               onClick={async () => {
-                setClicked(true)
-                db.collection(type)
-                  .doc(data.reg)
-                  .set({
-                    changes,
-                    type,
-                    room,
-                    data,
-                  })
-                  .then(() => {
-                    setNotif(true)
-                    setIsOpenedUp(false)
-                    setTimeout(() => {
-                      setClicked(false)
-                      setChanges('')
-                      setRoom('')
-                    }, [1000])
-                  })
+                if (changes != '') {
+                  setClicked(true)
+                  db.collection(type)
+                    .doc(data.reg)
+                    .set({
+                      changes,
+                      type,
+                      room,
+                      data,
+                      currentRoom: roomNo,
+                      currentBlock: block,
+                      gender,
+                      roomUpdated: user.roomUpdated || false,
+                    })
+                    .then(() => {
+                      setNotif(true)
+                      setIsOpenedUp(false)
+                      setTimeout(() => {
+                        setClicked(false)
+                        setChanges('')
+                        setRoom('')
+                      }, [1000])
+                    })
+                }
               }}
             >
               Update {viewBetter}

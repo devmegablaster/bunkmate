@@ -35,7 +35,7 @@ import {
   Edit,
 } from 'tabler-icons-react'
 
-function BunkMatesPage({ session, data }) {
+function BunkMatesPage({ session, data, user }) {
   const [more, setMore] = useState({})
   const [open, setOpen] = useState(false)
   const [updateType, setUpdateType] = useState('')
@@ -54,6 +54,7 @@ function BunkMatesPage({ session, data }) {
       <UpdatesModal
         isOpenedUp={isOpenedUp}
         setIsOpenedUp={setIsOpenedUp}
+        user={user}
         roomNo={data.room}
         block={data.block}
         data={data.bunkMates.filter((bunkMate) => {
@@ -62,6 +63,7 @@ function BunkMatesPage({ session, data }) {
           }
         })}
         type={updateType}
+        gender={data.type}
       />
       <ReportModal
         data={data.bunkMates.filter((bunkMate) => {
@@ -83,6 +85,9 @@ function BunkMatesPage({ session, data }) {
         })}
         timer={timer}
         setTimer={setTimer}
+        gender={data.type}
+        currentBlock={data.block}
+        currentRoom={data.room}
       />
       <Modal
         opened={open}

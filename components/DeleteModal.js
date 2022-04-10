@@ -3,7 +3,16 @@ import { useState, useEffect } from 'react'
 import db from '../firebase'
 import { Check } from 'tabler-icons-react'
 
-function DeleteModal({ deleteOpen, setDeleteOpen, data, timer, setTimer }) {
+function DeleteModal({
+  deleteOpen,
+  setDeleteOpen,
+  data,
+  currentBlock,
+  currentRoom,
+  gender,
+  timer,
+  setTimer,
+}) {
   data = data[0]
   const [clicked, setClicked] = useState(false)
   const [notif, setNotif] = useState(false)
@@ -89,6 +98,10 @@ function DeleteModal({ deleteOpen, setDeleteOpen, data, timer, setTimer }) {
                     .doc(data.reg)
                     .set({
                       type: 'delete',
+                      data,
+                      gender,
+                      currentRoom,
+                      currentBlock,
                     })
                     .then(() => {
                       setNotif(true)
