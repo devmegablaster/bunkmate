@@ -36,7 +36,7 @@ function login() {
               console.log('AUTH')
               firebase
                 .auth()
-                .signInWithRedirect(googleProvider)
+                .signInWithPopup(googleProvider)
                 .then((result) => {
                   /** @type {firebase.auth.OAuthCredential} */
                   var credential = result.credential
