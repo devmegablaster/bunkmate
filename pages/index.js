@@ -16,8 +16,24 @@ const Home = () => {
   const [refresh, setRefresh] = useState(false)
   const regex =
     /([+-]?(?=\.\d|\d)(?:\d+)?(?:\.?\d*))(?:[eE]([+-]?\d+))?[a-zA-Z]+[0-9][0-9][0-9][0-9]/
-  const { data: session, status } = useSession()
+  const [session, setSession] = useState({})
+  const [status, setStatus] = useState('loading')
   useEffect(() => {
+    firebase.auth().onAuthStateChanged(async (user) => {
+      if (!user) {
+        Router.push('/login')
+      } else {
+        const { displayName, email, photoURL } = user
+        setSession({
+          user: {
+            name: displayName,
+            email,
+            image: photoURL,
+          },
+        })
+        setStatus('authenticated')
+      }
+    })
     if ((status === 'authenticated' && data.loading) || refresh) {
       fetchUser(session?.user?.name?.match(regex)[0], setData, setUser)
       console.log('USER FETCHING...')
@@ -32,7 +48,14 @@ const Home = () => {
     return <Loading />
   }
   if (data.bunkMates?.length >= 1) {
-    return <BunkMatesPage session={session} data={data} user={user} />
+    return (
+      <BunkMatesPage
+        session={session}
+        data={data}
+        user={user}
+        setStatus={setStatus}
+      />
+    )
   }
   if (status === 'authenticated' && data.loading == false) {
     return <DetailsPage session={session} setRefresh={setRefresh} />

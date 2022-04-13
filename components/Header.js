@@ -1,7 +1,8 @@
 import { signOut } from 'next-auth/react'
 import React from 'react'
+import firebase from 'firebase'
 
-function Header({ name, image }) {
+function Header({ name, image, setStatus }) {
   return (
     <div className="flex items-center justify-between py-6 px-5 md:px-10">
       <img
@@ -21,7 +22,7 @@ function Header({ name, image }) {
             <button
               className="text-sm text-red-500"
               onClick={() => {
-                signOut()
+                firebase.auth().signOut()
               }}
             >
               Log Out

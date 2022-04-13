@@ -7,14 +7,18 @@
   },
   "dependencies": {
     "@mantine/core": "^4.1.2",
+    "@mantine/hooks": "^4.1.2",
     "@mantine/next": "^4.1.2",
     "axios": "^0.26.1",
+    "dotenv": "^16.0.0",
     "firebase": "^8.7.1",
     "lodash": "^4.17.21",
     "next": "latest",
     "next-auth": "^4.3.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-firebase-hooks": "^5.0.3",
+    "react-firebaseui": "^6.0.0",
     "tabler-icons-react": "^1.43.0"
   },
   "devDependencies": {

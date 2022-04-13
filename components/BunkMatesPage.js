@@ -35,7 +35,7 @@ import {
   Edit,
 } from 'tabler-icons-react'
 
-function BunkMatesPage({ session, data, user }) {
+function BunkMatesPage({ session, data, user, setStatus }) {
   const [more, setMore] = useState({})
   const [open, setOpen] = useState(false)
   const [updateType, setUpdateType] = useState('')
@@ -147,6 +147,7 @@ function BunkMatesPage({ session, data, user }) {
       </Modal>
 
       <Header
+        setStatus={setStatus}
         image={session?.user.image}
         name={session?.user.name.replace(regex, '')}
       />

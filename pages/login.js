@@ -1,8 +1,21 @@
-import React from 'react'
-import { getProviders, signIn } from 'next-auth/react'
+import React, { useEffect } from 'react'
 import Header from '../components/Header'
+import { app } from '../firebase'
+import firebase from 'firebase'
+import Router from 'next/router'
 
-function login({ providers }) {
+function login() {
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged(async (user) => {
+      if (user) {
+        Router.push('/')
+      }
+    })
+  })
+  const googleProvider = new firebase.auth.GoogleAuthProvider()
+  googleProvider.setCustomParameters({
+    hd: 'vitstudent.ac.in',
+  })
   return (
     <div className=" h-screen w-screen bg-white text-black">
       <header>
@@ -17,23 +30,42 @@ function login({ providers }) {
           <h3 className="flex flex-col text-base text-gray-400 md:text-xl">
             Login with your VIT Email Address to find your<span>Roommate!</span>
           </h3>
-          {Object.values(providers).map((provider) => {
-            return (
-              <div key={provider.name}>
-                <button
-                  className=" flex items-center rounded-md  bg-blue-500 px-2 py-1 font-sans font-normal text-white duration-150 hover:bg-blue-600 hover:shadow-lg active:scale-95 md:text-lg"
-                  onClick={() => signIn(provider.id, { callbackUrl: '/' })}
-                >
-                  <img
-                    src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png"
-                    alt="spotifyLogo"
-                    className="mr-2 h-10 w-10 rounded-sm bg-white p-2"
-                  />
-                  Sign In with {provider.name}
-                </button>
-              </div>
-            )
-          })}
+          <button
+            className="flex w-fit items-center space-x-2 rounded-md bg-blue-500 px-2 py-1 duration-150 hover:scale-105 hover:bg-blue-600 hover:shadow-lg active:scale-95 active:shadow-md"
+            onClick={() => {
+              console.log('AUTH')
+              firebase
+                .auth()
+                .signInWithPopup(googleProvider)
+                .then((result) => {
+                  /** @type {firebase.auth.OAuthCredential} */
+                  var credential = result.credential
+
+                  // This gives you a Google Access Token. You can use it to access the Google API.
+                  var token = credential.accessToken
+                  // The signed-in user info.
+                  var user = result.user
+                  // ...
+                })
+                .catch((error) => {
+                  // Handle Errors here.
+                  var errorCode = error.code
+                  var errorMessage = error.message
+                  // The email of the user's account used.
+                  var email = error.email
+                  // The firebase.auth.AuthCredential type that was used.
+                  var credential = error.credential
+                  // ...
+                })
+            }}
+          >
+            <img
+              src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png"
+              alt=""
+              className="h-8 rounded-md bg-white p-1"
+            />
+            <h4 className="text-white">Login with Google</h4>
+          </button>
         </div>
         <img
           src="https://gist.githubusercontent.com/MEGA-BLASTER2004/cfe069e9ee0788873a2d8a6bd46c250d/raw/a5fea8b2557f2c67201c3bfd31f408a201e7cc47/LandingSvg.svg"
@@ -69,12 +101,3 @@ function login({ providers }) {
 }
 
 export default login
-
-export async function getServerSideProps() {
-  const providers = await getProviders()
-  return {
-    props: {
-      providers,
-    },
-  }
-}
