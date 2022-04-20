@@ -33,7 +33,6 @@ import {
   Apps,
   Menu2,
   Edit,
-  Adjustments,
 } from 'tabler-icons-react'
 
 function BunkMatesPage({ session, data, user, setStatus }) {
@@ -160,8 +159,8 @@ function BunkMatesPage({ session, data, user, setStatus }) {
           <Menu
             className="ml-1 select-none rounded-md hover:bg-transparent"
             control={
-              <Button className="my-auto h-6 w-6 select-none bg-blue-50 px-1 text-black duration-150 hover:bg-blue-100 md:h-8 md:w-8">
-                <Adjustments className="text-blue-500" />
+              <Button className="my-auto h-6 w-6 select-none bg-gray-200 px-1 text-black duration-150 hover:bg-gray-300 md:h-8 md:w-8">
+                <Edit />
               </Button>
             }
             radius={0}
@@ -301,7 +300,6 @@ function BunkMatesPage({ session, data, user, setStatus }) {
                   variant="light"
                   color="blue"
                   fullWidth
-                  className=""
                   style={{ marginTop: 14 }}
                   onClick={() => {
                     setMore(bunkMate)
