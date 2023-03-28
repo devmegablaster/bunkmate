@@ -68,7 +68,7 @@ function login() {
           </button>
         </div>
         <img
-          src="https://gist.githubusercontent.com/MEGA-BLASTER2004/cfe069e9ee0788873a2d8a6bd46c250d/raw/a5fea8b2557f2c67201c3bfd31f408a201e7cc47/LandingSvg.svg"
+          src="https://gist.githubusercontent.com/devmegablaster/cfe069e9ee0788873a2d8a6bd46c250d/raw/a5fea8b2557f2c67201c3bfd31f408a201e7cc47/LandingSvg.svg"
           alt=""
           className="h-[29rem] p-4 md:p-0"
         />

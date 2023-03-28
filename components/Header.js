@@ -6,7 +6,7 @@ function Header({ name, image, setStatus }) {
   return (
     <div className="flex items-center justify-between py-6 px-5 md:px-10">
       <img
-        src="https://gist.githubusercontent.com/MEGA-BLASTER2004/d1c04c7695d1410c4c34254b00c37e1d/raw/29205b600f8166a93a9aad4e18dfc1ce44d83707/BunkMates.svg"
+        src="https://gist.githubusercontent.com/devmegablaster/d1c04c7695d1410c4c34254b00c37e1d/raw/29205b600f8166a93a9aad4e18dfc1ce44d83707/BunkMates.svg"
         alt=""
         className="h-8 md:h-12"
       />
